@@ -1,3 +1,5 @@
+import _ from "lodash"
+
 function Component() {
     const elem = document.createElement("div")
     const arr = ["Hello", "Webpack"]
