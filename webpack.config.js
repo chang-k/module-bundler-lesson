@@ -1,4 +1,5 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 // 絶対パス /Users/(ユーザー名)/Lesson/module-bundler-lesson/dist
 const outputPath = path.resolve(__dirname, 'dist')
@@ -11,6 +12,11 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                loader: "babel-loader"
+            },
             {
                 test: /\.css$/,
                 use: [
@@ -33,10 +39,20 @@ module.exports = {
                     limit: 2 * 1024, // 2KiB
                     name: './images/[name].[ext]'
                 }
+            },
+            {
+                test: /\.html$/,
+                loader: 'html-loader'
             }
         ]
     },
     devServer: {
         contentBase: outputPath
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+            filename: './index.html'
+        })
+    ]
 }

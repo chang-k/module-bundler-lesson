@@ -1,18 +1,7 @@
-import _ from "lodash"
-import "./style.css";
-import "./style.scss";
-import justdoit from "./just-do-it.jpeg";
+import React from "react";
+import ReactDOM from "react-dom";
 
-function Component() {
-    const elem = document.createElement("div")
-    const arr = ["Hello", "Webpack", "うい！！！"]
-    elem.innerHTML = _.join(arr, " ")
-    return elem
-}
-
-document.body.appendChild(Component())
-document.body.classList.add('back')
-
-const img = new Image()
-img.src = justdoit
-document.body.appendChild(img)
+ReactDOM.render(
+    <div>ハロー！</div>,
+    document.getElementById('root')
+)
