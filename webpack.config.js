@@ -9,6 +9,14 @@ module.exports = {
         filename: "main.js",
         path: outputPath
     },
+    module: {
+        rule: [
+            {
+                test: /\.css$/,
+                use: ['css-loader']
+            }
+        ]
+    },
     devServer: {
         contentBase: outputPath
     }
