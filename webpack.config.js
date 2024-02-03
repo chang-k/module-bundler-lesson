@@ -17,6 +17,14 @@ module.exports = {
                     'style-loader',
                     'css-loader'
                 ]
+            },
+            {
+                test: /\.(jpe?g|png|gif|svg|ico)$/i,
+                loader: 'url-loader',
+                options: {
+                    limit: 2 * 1024, // 2KiB
+                    name: './images/[name].[ext]'
+                }
             }
         ]
     },
