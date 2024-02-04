@@ -2,6 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 // 絶対パス /Users/(ユーザー名)/Lesson/module-bundler-lesson/dist
 const outputPath = path.resolve(__dirname, 'dist')
@@ -54,12 +55,15 @@ module.exports = {
         })
     ],
     optimization: {
-        minimizer: [new UglifyjsWebpackPlugin({
-            uglifyOptions: {
-                compress: {
-                    drop_console: true
+        minimizer: [
+            new UglifyjsWebpackPlugin({
+                uglifyOptions: {
+                    compress: {
+                        drop_console: true
+                    }
                 }
-            }
-        })]
+            }),
+            new OptimizeCSSAssetsPlugin({})
+        ]
     }
 }
