@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin')
 
 // 絶対パス /Users/(ユーザー名)/Lesson/module-bundler-lesson/dist
 const outputPath = path.resolve(__dirname, 'dist')
@@ -51,5 +52,14 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: '[name].[hash].css'
         })
-    ]
+    ],
+    optimization: {
+        minimizer: [new UglifyjsWebpackPlugin({
+            uglifyOptions: {
+                compress: {
+                    drop_console: true
+                }
+            }
+        })]
+    }
 }
