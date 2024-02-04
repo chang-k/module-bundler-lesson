@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 // 絶対パス /Users/(ユーザー名)/Lesson/module-bundler-lesson/dist
 const outputPath = path.resolve(__dirname, 'dist')
@@ -20,14 +21,14 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    'style-loader',
+                    MiniCssExtractPlugin.loader,
                     'css-loader'
                 ]
             },
             {
                 test: /\.scss$/,
                 use: [
-                    'style-loader',
+                    MiniCssExtractPlugin.loader,
                     'css-loader',
                     'sass-loader'
                 ]
@@ -53,6 +54,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html',
             filename: './index.html'
+        }),
+        new MiniCssExtractPlugin({
+            filename: '[name].[hash].css'
         })
     ]
 }
